@@ -17,8 +17,13 @@ if (@$_SESSION['status'] != 'login') {
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon" />
-    <title>Company Profile Afiq</title>
+    <?php
+    $tmp = mysqli_query($konek, "SELECT * FROM profile ORDER BY id ASC");
+    while ($pro = mysqli_fetch_assoc($tmp)) :
+    ?>
+        <link rel="shortcut icon" href="img/profile/<?= $pro['logo'] ?>" type="image/x-icon" />
+        <title><?= $pro['nama_perusahaan'] ?></title>
+    <?php endwhile; ?>
 
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -33,7 +38,7 @@ if (@$_SESSION['status'] != 'login') {
     <script src="assets/js/jquery-3.7.1.min.js"></script>
     <!-- DataTables -->
     <link rel="stylesheet" href="assets/css/dataTables.css">
-    <!-- SweetAlert -->
+    <!-- SweetAlert 2 -->
     <link rel="stylesheet" href="assets/css/sweetalert2.min.css">
     <script src="assets/js/sweetalert2.min.js"></script>
 </head>
@@ -49,8 +54,13 @@ if (@$_SESSION['status'] != 'login') {
     <aside class="sidebar-nav-wrapper">
         <div class="navbar-logo">
             <a href="index.html">
-                <img src="assets/images/logo.png" width="35" class="me-2 mb-2" alt="logo" />
-                <span class="text-black fw-bold fs-5 text-uppercase ">AfiqNet</span>
+                <?php
+                $tmp = mysqli_query($konek, "SELECT * FROM profile ORDER BY id ASC");
+                while ($pro = mysqli_fetch_assoc($tmp)) :
+                ?>
+                    <img src="img/profile/<?= $pro['logo'] ?>" width="35" class="me-2 mb-2" alt="logo" />
+                    <span class="text-black fw-bold fs-5 text-uppercase "><?= $pro['nama_perusahaan'] ?></span>
+                <?php endwhile; ?>
             </a>
         </div>
         <nav class="sidebar-nav">
